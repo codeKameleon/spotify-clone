@@ -1,0 +1,17 @@
+
+.track {
+    display: flex;
+    align-items: center;
+}
+
+.track > * {
+    margin: .5rem;
+}
+
+.track h2 {
+    font-size: 1rem;
+    margin: 0;
+}
+.track img {
+    width: 100px;
+}

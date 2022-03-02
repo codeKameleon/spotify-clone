@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Playlists } from './features/Playlists/Playlists'
 import './App.css';
 
 function App() {
-  const getAuthURL = (): string => {
-    const { REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URI } = process.env
+  const { REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URI } = process.env
 
+  const getAuthURL = (): string => {
     const client_ID = REACT_APP_CLIENT_ID;
     const redirect_URI =  REACT_APP_REDIRECT_URI;
     const scopes = ["playlist-read-private", "playlist-modify-private", "user-read-recently-played"];
@@ -19,6 +20,8 @@ function App() {
       <header className="App-header">
         <a href={getAuthURL()}>Authentication</a>
       </header>
+
+      <Playlists/>
     </div>
   );
 }
