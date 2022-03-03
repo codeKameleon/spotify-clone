@@ -1,0 +1,23 @@
+
+.track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #eaeded;
+
+    & > * {
+        margin: .5rem;
+        flex: 1;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    img {
+        max-width: 150px;
+    }
+}

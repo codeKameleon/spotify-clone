@@ -1,0 +1,39 @@
+.app {
+    header {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+
+            @media screen and (min-width: 1200px) {
+                max-width: 1024px;
+                margin: 0 auto;
+            }
+        }
+
+        h1 {
+            font-size: 1.25rem;
+        }
+
+        a {
+            color: #fff;
+        }
+    }
+
+    main {
+
+        h2 {
+            font-size: 1.75rem;
+        }
+
+        @media screen and (min-width: 1200px) {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import './Playlists.css'
+import './Playlists.scss'
 
 export function Playlists () {
     const [playlists, setPlaylists] = useState<any[]>([])
@@ -54,7 +54,7 @@ export function Playlists () {
 
     return (
         <>
-            <h1>Playlists</h1>
+            <h2>Playlists</h2>
 
             <select name="playlists" id="playlists" onChange={handleChange}>
                 {playlists.map(playlist => {
@@ -75,8 +75,9 @@ export function Playlists () {
                     return (
                         <div className="track" key={track.id}>
                             <img src={track.album.images[0].url} alt={`cover ${track.name}`} />
+
                             <div>
-                                <h2>{track.name}</h2>
+                                <h3>{track.name}</h3>
                                 {track.artists.map((artist: any) => (
                                     <span key={artist.id}>{artist.name} </span>
                                 ))}

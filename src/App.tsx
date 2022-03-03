@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Playlists } from './features/Playlists/Playlists'
-import './App.css';
+import './App.scss';
 
 function App() {
   const { REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URI } = process.env
@@ -16,12 +16,19 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <a href={getAuthURL()}>Authentication</a>
+    <div className="app">
+      <header>
+        <div className="wrapper">
+          <h1>Spotify</h1>
+         <a href={getAuthURL()}>Authentication</a>
+        </div>
       </header>
 
-      <Playlists/>
+      <main>
+        <div className="wrapper">
+          <Playlists/>
+        </div>
+      </main>
     </div>
   );
 }
