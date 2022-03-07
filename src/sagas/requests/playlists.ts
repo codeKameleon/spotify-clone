@@ -8,3 +8,11 @@ export function requestGetPlaylists () {
         }
     })
 }
+
+export function requestGetPlaylist (playlistId: string) {
+    return axios.get(`https://api.spotify.com/v1/me/playlists/${playlistId}`,{
+        headers: {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    })
+}

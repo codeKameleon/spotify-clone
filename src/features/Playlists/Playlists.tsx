@@ -1,4 +1,4 @@
-import  {useEffect } from 'react';
+import  {useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getPlaylists } from '../../actions/playlistsActions';
@@ -8,31 +8,41 @@ import './Playlists.scss';
 
 export function Playlists () {
     const dispatch = useDispatch();
-    const playlists = useSelector((state: RootState) => state.playlists.playlists)
-
-    console.log(playlists)
+    const playlists = useSelector((state: RootState) => state.playlists.playlists);
+    const [description, setDescription] = useState(playlists[0].description);
 
     useEffect(() => {
         dispatch(getPlaylists())
     }, []);
 
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const playlist = playlists.find((pl: any) => pl.name === e.currentTarget.value)
+        setDescription(playlist.description)
+    }
+
     return (
         <>
-            <h2>Playlists</h2>
+                <h2>Playlists</h2>
 
-            <div className="playlists">
-                <select>
-                    {playlists.map((playlist: any) => {
-                        const { id, name } = playlist
+                <div className="playlists">
+                    <select onChange={handleChange}>
+                        {playlists.map((playlist: any) => {
+                            const { id, name } = playlist
+    
+                            return (
+                                <option key={id} value={name}>
+                                    {name}
+                                </option>
+                            )
+                        })}
+                    </select> 
 
-                        return (
-                            <option key={id} value={name}>
-                                {name}
-                            </option>
-                        )
-                    })}
-                </select> 
-            </div>
+                    <p>{description}</p>
+                </div>
+                
+
+
         </>
+
     )
 }
