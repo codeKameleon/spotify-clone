@@ -1,32 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { Playlists } from './features/Playlists/Playlists'
+import { useState, useEffect } from 'react';
+
+import { getAuthURL } from './utils/auth'
+
+import { Playlists } from './features/Playlists/Playlists';
+
 import './App.scss';
 
-function App() {
-  const { REACT_APP_CLIENT_ID, REACT_APP_REDIRECT_URI } = process.env
+const App = () => {
+  const [token, setToken] = useState<string | null>('')
 
-  const getAuthURL = (): string => {
-    const client_ID = REACT_APP_CLIENT_ID;
-    const redirect_URI =  REACT_APP_REDIRECT_URI;
-    const scopes = ["playlist-read-private", "playlist-modify-private", "user-read-recently-played"];
+  useEffect(() => {
+    const hash = window.location.hash;
+    let token = window.localStorage.getItem('token')
 
-    const auth_URL = `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_ID}&scope=${scopes}&redirect_uri=${redirect_URI}`
+    if(hash && token == null) {
+      let token = hash.replace(/#access_token=([\w\-_]+)/g, '$1');
+      window.location.hash = "";
+      window.localStorage.setItem('token', token)
+    }
 
-    return auth_URL
-  }
+    setToken(token)
+  }, [token])
 
   return (
     <div className="app">
       <header>
         <div className="wrapper">
           <h1>Spotify</h1>
-         <a href={getAuthURL()}>Authentication</a>
+        {!window.localStorage.getItem('token') && <a href={getAuthURL()}>Authentication</a>}
         </div>
       </header>
 
       <main>
         <div className="wrapper">
-          <Playlists/>
+          {
+          !window.localStorage.getItem('token') ? (
+            <div>
+              You need a valid token to access Spotify API.
+            </div>
+          ) :
+            (
+              <>
+                <Playlists/>
+              </>
+          )
+        }
         </div>
       </main>
     </div>
