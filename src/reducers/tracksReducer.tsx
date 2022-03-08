@@ -1,18 +1,18 @@
 import * as type from '../types';
 
 const initialState = {
-    playlists: []
+    tracks: []
 }
 
-export const playlistsReducer = (state = initialState, action: any) => {
+export const tracksReducer = (state = initialState, action: any) => {
     switch(action.type) {
-        case type.SET_PLAYLISTS:
+        case type.SET_TRACKS:
 
-        const { playlists } = action
+        const { tracks, playlistId } = action
 
         return {
             ...state,
-            playlists
+            tracks
         }
 
         default: 

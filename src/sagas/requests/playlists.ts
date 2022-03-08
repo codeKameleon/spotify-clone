@@ -9,8 +9,8 @@ export function requestGetPlaylists () {
     })
 }
 
-export function requestGetPlaylist (playlistId: string) {
-    return axios.get(`https://api.spotify.com/v1/me/playlists/${playlistId}`,{
+export function requestGetTracks (playlistId: string) {
+    return axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
         headers: {
             'Authorization': `Bearer ${getToken()}`
         }
