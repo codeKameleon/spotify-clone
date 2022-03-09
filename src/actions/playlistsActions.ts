@@ -1,5 +1,6 @@
 import * as type from '../types';
 
+// Playlists
 export const getPlaylists = () => ({
     type: type.GET_PLAYLISTS
 })
@@ -9,6 +10,7 @@ export const setPlaylists = (playlists: []) => ({
     playlists
 })
 
+// Playlist
 export const getCurrentPlaylistId = () => ({
     type: type.GET_CURRENT_PLAYLIST_ID
 })
@@ -18,6 +20,7 @@ export const setCurrentPlaylistId = (currentPlaylistId: string) => ({
     currentPlaylistId
 })
 
+// Tracks
 export const getTracks = () => ({
     type: type.GET_TRACKS
 })

@@ -1,0 +1,10 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1rem;
+    }
+}

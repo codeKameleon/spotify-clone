@@ -9,6 +9,20 @@ export function requestGetPlaylists () {
     })
 }
 
+// export function requestCreatePlaylist () {
+//     return axios.post(`https://api.spotify.com/v1/users/${process.env.REACT_APP_USER_ID}/playlists`,
+//         {
+//             'name': 'new playlist',
+//             'description': 'test',
+//             'public': false
+//         },
+//         {
+//             headers: {
+//                 'Authorization': `Bearer ${getToken()}`
+//         }
+//     })
+// }
+
 export function requestGetTracks (playlistId: string) {
     return axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
         headers: {

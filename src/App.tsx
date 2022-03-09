@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie';
 import { getAuthURL } from './utils/auth'
 
 import Playlists from './features/Playlists/Playlists';
+import AddNewPlaylist from './features/AddNewPlaylist/AddNewPlaylist';
 import './App.scss';
 
 const logo = './assets/spotify-logo.png';
@@ -45,6 +46,11 @@ const App = () => {
           ) :
             (
               <>
+                <div>
+                  {/* Searchbar */}
+                  <AddNewPlaylist/>
+                </div>
+
                 <Playlists/>
               </>
           )
