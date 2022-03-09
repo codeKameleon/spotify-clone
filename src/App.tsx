@@ -3,9 +3,10 @@ import { useCookies } from 'react-cookie';
 
 import { getAuthURL } from './utils/auth'
 
-import { Playlists } from './features/Playlists/Playlists';
-
+import Playlists from './features/Playlists/Playlists';
 import './App.scss';
+
+const logo = './assets/spotify-logo.png';
 
 const App = () => {
   const [cookies, setCookie] = useCookies(["token"])
@@ -28,7 +29,8 @@ const App = () => {
     <div className="app">
       <header>
         <div className="wrapper">
-          <h1>Spotify</h1>
+          {/* <h1>Spotify</h1> */}
+          <img src={`${process.env.PUBLIC_URL}/assets/spotify-logo.png`} alt="spotify logo" />
         {!cookies.token && <a href={getAuthURL()}>Authentication</a>}
         </div>
       </header>

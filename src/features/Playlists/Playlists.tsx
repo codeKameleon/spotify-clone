@@ -6,8 +6,9 @@ import { RootState } from '../../reducers/rootReducer';
 
 import './Playlists.scss';
 
-export function Playlists () {
+const Playlists  = () => {
     const dispatch = useDispatch();
+
     const playlists = useSelector((state: RootState) => state.playlists.playlists);
     const currentPlaylistId = useSelector((state: RootState) => state.playlists.currentPlaylistId);
     const tracks = useSelector((state: RootState) => state.tracks.tracks);
@@ -27,34 +28,58 @@ export function Playlists () {
 
         setDescription(playlist.description)
     }
-    
+
     return (
         <>
-            <h2>Playlists</h2>
+            {playlists.length > 0  &&  (
+                <>
+                    <h1>Playlists</h1>
 
-            <div className="playlists">
-                <select onChange={handleChange}>
-                    {playlists.map((playlist: any) => {
-                        const { id, name } = playlist
+                    <div className="playlists">
+                        <select className="playlist-selector" onChange={handleChange}>
+                            {playlists.map((playlist: any) => {
+                                const { id, name } = playlist
 
-                        return (
-                            <option key={id} value={name}>
-                                {name}
-                            </option>
-                        )
-                    })}
-                </select> 
+                                return (
+                                    <option key={id} value={name}>
+                                        {name}
+                                    </option>
+                                )
+                            })}
+                        </select>  
 
-                <p>{description}</p>
-            </div>
-            
-            <div className="tracks">
-                {tracks.map((tr: any) => (
-                    <div key={tr.track.id}>
-                    <span>{tr.track.name}</span>
+                        {description && <p className="description">{description}</p>}
                     </div>
-                ))}
-            </div>
+            
+                    <div className="tracks">
+                        {tracks.map((tr: any) => {
+                            const { track } =  tr
+
+                            return (
+                                <div className="track" key={track.id}>
+                                    <img src={track.album.images[0].url} alt={`cover ${track.name}`} />
+
+                                    <div>
+                                        <h2>{track.name}</h2>
+
+                                        {track.artists.map((artist: any) => (
+                                            <span className="track-artist" key={artist.id}>
+                                                {artist.name} 
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <span>{track.album.name}</span>
+
+                                    <span>{track.album.release_date}</span>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </>
+            )}
         </>
     )
 }
+
+export default Playlists;
