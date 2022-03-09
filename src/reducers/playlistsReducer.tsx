@@ -1,7 +1,8 @@
 import * as type from '../types';
 
 const initialState = {
-    playlists: []
+    playlists: [],
+    currentPlaylistId: ''
 }
 
 export const playlistsReducer = (state = initialState, action: any) => {
@@ -13,6 +14,15 @@ export const playlistsReducer = (state = initialState, action: any) => {
         return {
             ...state,
             playlists
+        }
+        
+        case type.SET_CURRENT_PLAYLIST_ID:
+
+        const { currentPlaylistId } = action
+
+        return {
+            ...state,
+            currentPlaylistId
         }
 
         default: 

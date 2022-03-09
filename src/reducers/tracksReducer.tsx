@@ -1,14 +1,14 @@
 import * as type from '../types';
 
 const initialState = {
-    tracks: []
+    tracks: [],
 }
 
 export const tracksReducer = (state = initialState, action: any) => {
     switch(action.type) {
         case type.SET_TRACKS:
 
-        const { tracks, playlistId } = action
+        const { tracks } = action
 
         return {
             ...state,

@@ -1,11 +1,12 @@
 import { all, takeEvery } from 'redux-saga/effects';
-import { GET_PLAYLISTS, GET_TRACKS } from '../types';
-import { handleGetPlaylists,  } from './handlers/playlists';
+import { GET_PLAYLISTS, GET_TRACKS, GET_CURRENT_PLAYLIST_ID } from '../types';
+import { handleGetPlaylists  } from './handlers/playlists';
 
 
 export function* watcherSaga () {
     yield all([
         takeEvery(GET_PLAYLISTS, handleGetPlaylists),
+        takeEvery(GET_CURRENT_PLAYLIST_ID, handleGetPlaylists),
         takeEvery(GET_TRACKS, handleGetPlaylists),
     ])
 }
