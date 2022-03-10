@@ -1,9 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { RootState } from '../../reducers/rootReducer';
-
-import { setNewPlaylist } from '../../actions/playlistsActions';
+import { useState } from 'react';
 
 import { Button, Modal, Box, TextField } from '@mui/material'
 import './AddNewPlaylist.scss';
@@ -46,8 +41,6 @@ const buttonStyle = {
 }
 
 const AddNewPlaylist  = () => {
-    const dispatch = useDispatch();
-
     const [formData, setFormData] = useState({
         name: '',
         description: ''
@@ -65,9 +58,9 @@ const AddNewPlaylist  = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        dispatch(setNewPlaylist(formData))
+        // dispatch(setNewPlaylist(formData))
     }
-  
+
     return (
         <>
             <Button 

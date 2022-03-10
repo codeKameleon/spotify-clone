@@ -15,7 +15,7 @@ export const getNewPlaylist = () => ({
 })
 
 export const setNewPlaylist = (playlist: {}) => ({
-    type: type.SET_PLAYLISTS,
+    type: type.SET_NEW_PLAYLIST,
     playlist
 })
 

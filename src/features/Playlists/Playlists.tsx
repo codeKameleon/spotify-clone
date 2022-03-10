@@ -18,6 +18,7 @@ const Playlists  = () => {
     useEffect(() => {
         dispatch(getPlaylists())
         dispatch(getCurrentPlaylistId())
+        dispatch(getNewPlaylist())
         dispatch(getTracks())
     }, [currentPlaylistId]);
 

@@ -1,6 +1,6 @@
 import { call, put, select } from 'redux-saga/effects';
-import { setPlaylists, setTracks, setCurrentPlaylistId, setNewPlaylist } from '../../actions/playlistsActions';
-import { requestGetPlaylists, requestGetTracks, requestCreatePlaylist } from '../requests/playlists';
+import { setPlaylists, setTracks, setCurrentPlaylistId } from '../../actions/playlistsActions';
+import { requestGetPlaylists, requestGetTracks } from '../requests/playlists';
 
 export function* handleGetPlaylists(): any {
     try {
@@ -20,9 +20,8 @@ export function* handleGetPlaylists(): any {
 
 export function* handleCreatePlaylist(): any {
     try {
-        yield call(requestCreatePlaylist, {name: '', description: ''})
-        yield put(setNewPlaylist({name: '', description: ''}));
-
+        // get new playlist object from form
+        // post call with new playlist object
     } catch(error) {
         console.log('Error', error)
     }

@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const playlistsReducer = (state = initialState, action: any) => {
-    switch(action.type) {
+   switch(action.type) {
         case type.SET_PLAYLISTS:
 
             const { playlists } = action
@@ -20,12 +20,11 @@ export const playlistsReducer = (state = initialState, action: any) => {
         case type.SET_NEW_PLAYLIST:
 
             const { playlist } = action
-            const playlistsUpdated = state.playlists.concat(playlist)
+            const playlistsUpdated = [...state.playlists, playlist]
 
             return {
                 ...state,
-                playlistsUpdated
-           
+                playlists: playlistsUpdated
             }
         
         case type.SET_CURRENT_PLAYLIST_ID:
