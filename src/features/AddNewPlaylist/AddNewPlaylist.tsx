@@ -1,4 +1,9 @@
-import  {useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { RootState } from '../../reducers/rootReducer';
+
+import { setNewPlaylist } from '../../actions/playlistsActions';
 
 import { Button, Modal, Box, TextField } from '@mui/material'
 import './AddNewPlaylist.scss';
@@ -41,9 +46,27 @@ const buttonStyle = {
 }
 
 const AddNewPlaylist  = () => {
+    const dispatch = useDispatch();
+
+    const [formData, setFormData] = useState({
+        name: '',
+        description: ''
+    })
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const data: any = {...formData}
+        data[e.target.id]  = e.target.value
+        setFormData(data)
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        dispatch(setNewPlaylist(formData))
+    }
   
     return (
         <>
@@ -61,13 +84,31 @@ const AddNewPlaylist  = () => {
                 <Box sx={modalStyle}>
                     <h2>Add a new playlist</h2>
                     
-                    <form className="form">
-                        <TextField sx={textFieldStyle} label="Playlist name" variant="outlined" />
-                        <TextField sx={textFieldStyle}  label="Playlist description (optional)" variant="outlined" multiline />
+                    <form className="form" onSubmit={handleSubmit}>
+                        <TextField 
+                            onChange={handleChange} 
+                            id="name" 
+                            value={formData.name} 
+                            sx={textFieldStyle} 
+                            label="Playlist name" 
+                            variant="outlined" 
+                            required
+                        />
+
+                        <TextField 
+                            onChange={handleChange} 
+                            id="description" 
+                            value={formData.description} 
+                            sx={textFieldStyle} 
+                            label="Playlist description (optional)"
+                            variant="outlined" 
+                            multiline
+                            required
+                        />
 
                         <div className="actions">
                             <Button sx={buttonStyle} variant="outlined" onClick={handleClose}>Cancel</Button>
-                            <Button sx={buttonStyle} variant="contained">Create</Button>
+                            <Button type="submit" sx={buttonStyle} variant="contained">Create</Button>
                         </div>
                     </form>
                 </Box>

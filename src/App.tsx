@@ -7,8 +7,6 @@ import Playlists from './features/Playlists/Playlists';
 import AddNewPlaylist from './features/AddNewPlaylist/AddNewPlaylist';
 import './App.scss';
 
-const logo = './assets/spotify-logo.png';
-
 const App = () => {
   const [cookies, setCookie] = useCookies(["token"])
 
@@ -30,7 +28,6 @@ const App = () => {
     <div className="app">
       <header>
         <div className="wrapper">
-          {/* <h1>Spotify</h1> */}
           <img src={`${process.env.PUBLIC_URL}/assets/spotify-logo.png`} alt="spotify logo" />
         {!cookies.token && <a href={getAuthURL()}>Authentication</a>}
         </div>

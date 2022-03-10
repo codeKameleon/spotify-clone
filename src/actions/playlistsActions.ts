@@ -10,6 +10,15 @@ export const setPlaylists = (playlists: []) => ({
     playlists
 })
 
+export const getNewPlaylist = () => ({
+    type: type.GET_NEW_PLAYLIST
+})
+
+export const setNewPlaylist = (playlist: {}) => ({
+    type: type.SET_PLAYLISTS,
+    playlist
+})
+
 // Playlist
 export const getCurrentPlaylistId = () => ({
     type: type.GET_CURRENT_PLAYLIST_ID
